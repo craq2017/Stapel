@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Adaptive Thumbnail Pile Effect with Automatic Grouping</title>
+		<meta name="description" content="Thumbnail Pile Effect with Automatic Grouping" />
+		<meta name="keywords" content="jquery, pile, effect, images, grid, thumbnails, css3, grouping, albums" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/stapel.css" />
+		<link rel="stylesheet" type="text/css" href="css/custom.css" />
+		<script src="js/modernizr.custom.63321.js"></script>
+		<!--[if lte IE 7]><style>.support-note .note-ie{display:block;}</style><![endif]-->
+	</head>
+	<body>
+		<div class="container">	
+
+			<!-- Codrops top bar -->
+			<div class="codrops-top clearfix">
+				<a href="http://tympanus.net/Tutorials/3DTimeline/">
+					<strong>&laquo; Previous Demo: </strong>Responsive 3D Timeline
+				</a>
+				<span class="right">
+					<a href="http://tympanus.net/codrops/?p=12205">
+						<strong>Back to the Codrops Article</strong>
+					</a>
+				</span>
+			</div><!--/ Codrops top bar -->
+			
+			<header class="clearfix">
+			
+				<h1>Adaptive Thumbnail Pile Effect <span>with automatic grouping | Demo 1: default settings</span></h1>
+				
+				<nav class="codrops-demos">
+					<a class="current-demo" href="index.html">Demo 1</a>
+					<a href="index2.html">Demo 2</a>
+					<a href="index3.html">Demo 3</a>
+				</nav>
+
+				<div class="support-note">
+					<span class="note-ie">Sorry, only modern browsers.</span>
+				</div>
+				
+			</header>
+			
+			<section class="main">
+				
+				<div class="wrapper">
+
+					<div class="topbar">
+						<span id="close" class="back">&larr;</span>
+						<h2>Dribbble's Talent</h2><h3 id="name"></h3>
+					</div>
+					
+					<ul id="tp-grid" class="tp-grid">
+
+						<!-- Action and Adventure -->
+						<li data-pile="Action and Adventure">
+							<a href="http://prince-legacy.apps.openshift.aq.lab">
+								<span class="tp-info"><span>Prince of Persia</span></span>
+								<img src="images/1/p1.jpg" />
+							</a>
+						</li>
+						<li data-pile="Action and Adventure">
+							<a href="http://mario-legacy.apps.openshift.aq.lab">
+								<span class="tp-info"><span>Suber Mario Bros.</span></span>
+								<img src="images/1/m1.png" />
+							</a>
+						</li>
+						
+
+						<!-- Puzzles -->
+						<li data-pile="Puzzles">
+							<a href="http://tetris-legacy.apps.openshift.aq.lab/">
+								<span class="tp-info"><span>Tetris</span></span>
+								<img src="images/1/t1.jpg" />
+							</a>
+						</li>
+						
+
+						<!-- 3d shooters -->
+						<li data-pile="3d shooters">
+							<a href="http://doom-legacy.apps.openshift.aq.lab/">
+								<span class="tp-info"><span>Doom</span></span>
+								<img src="images/1/d1.jpg" />
+							</a>
+						</li>
+					
+
+						<!-- Andrea Austoni -->
+						<li data-pile="Andrea Austoni">
+							<a href="http://drbl.in/cyWa">
+								<span class="tp-info"><span>Growth in 2012 (Holiday Card)</span></span>
+								<img src="images/4/1.jpg" />
+							</a>
+						</li>
+						<li data-pile="Andrea Austoni">
+							<a href="http://drbl.in/cRkb">
+								<span class="tp-info"><span>Grady Wilson</span></span>
+								<img src="images/4/2.jpg" />
+							</a>
+						</li>
+						<li data-pile="Andrea Austoni">
+							<a href="http://drbl.in/cSKM">
+								<span class="tp-info"><span>More Cowbell</span></span>
+								<img src="images/4/3.jpg" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+		</div><!-- /container -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.stapel.js"></script>
+		<script type="text/javascript">	
+			$(function() {
+
+				var $grid = $( '#tp-grid' ),
+					$name = $( '#name' ),
+					$close = $( '#close' ),
+					$loader = $( '<div class="loader"><i></i><i></i><i></i><i></i><i></i><i></i><span>Loading...</span></div>' ).insertBefore( $grid ),
+					stapel = $grid.stapel( {
+						onLoad : function() {
+							$loader.remove();
+						},
+						onBeforeOpen : function( pileName ) {
+							$name.html( pileName );
+						},
+						onAfterOpen : function( pileName ) {
+							$close.show();
+						}
+					} );
+
+				$close.on( 'click', function() {
+					$close.hide();
+					$name.empty();
+					stapel.closePile();
+				} );
+
+			} );
+		</script>
+	</body>
+</html>
